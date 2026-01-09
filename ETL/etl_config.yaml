@@ -1,0 +1,75 @@
+# ETL Configuration File
+
+etl:
+  batch_size: 100
+  max_retries: 3
+  retry_delay: 5
+
+cleaning_rules:
+  salary_extraction:
+    currency: "USD"
+    default_values:
+      min: null
+      max: null
+  
+  industry_mapping:
+    "Banking & Finance": "Finance"
+    "Information Technology": "Technology"
+    "Retail & Wholesale": "Retail"
+    "Tourism & Hospitality": "Hospitality"
+    "Logistics & Transportation": "Logistics"
+    "Media & Advertising": "Media"
+    "Energy & Utilities": "Energy"
+    "Education": "Education"
+    "Healthcare": "Healthcare"
+    "Construction": "Construction"
+    "Manufacturing": "Manufacturing"
+    "Real Estate": "Real Estate"
+    "Telecommunications": "Telecom"
+    "Consultancy": "Consulting"
+    "Government / Public Sector": "Government"
+    "NGO / INGO": "NGO"
+    "Automotive - Vehicle": "Automotive"
+    "Catering": "Food Services"
+    "Foods and drinks": "Food Services"
+    "Clothing": "Fashion"
+    "General Business Services": "Business Services"
+    "Casino": "Entertainment"
+    "Agriculture": "Agriculture"
+    "Mechanical": "Engineering"
+  
+  location_mapping:
+    "Phnom Penh": "Phnom Penh"
+    "Siem Reap": "Siem Reap"
+    "Kandal": "Kandal"
+    "Preah Sihanouk": "Sihanoukville"
+    "Kampong Speu": "Kampong Speu"
+    "Battambang": "Battambang"
+  
+  experience_mapping:
+    "Entry Level (0–1 year)": "Entry Level"
+    "Junior Level (1–2 years)": "Junior Level"
+    "Mid Level (2–5 years)": "Mid Level"
+    "Senior Level (5+ years)": "Senior Level"
+    "No experience": "Entry Level"
+  
+  education_mapping:
+    "Bachelor's Degree": "Bachelor"
+    "Associate Degree": "Associate"
+    "High School": "High School"
+    "Professional Certificate": "Certificate"
+    "Any education level": "Not Required"
+    "No education level": "Not Required"
+
+deduplication:
+  enabled: true
+  fields: ["job_title", "company_name", "location", "posting_date"]
+  similarity_threshold: 0.9
+  time_window_days: 7
+
+data_quality:
+  required_fields: ["job_title", "company_name", "industry", "location"]
+  date_validation: true
+  salary_validation: true
+  min_salary: 100
+  max_salary: 5000
